@@ -12,138 +12,27 @@ Dieses Paket enthält:
 2. **`test_ids_calculator.py`** - Umfassendes Test-Modul mit 100% Code-Coverage
 3. **`experiments.py`** - Wissenschaftliche Experimente zur Validierung und Datensammlung
 
-
-## Test-Modul (`test_ids_calculator.py`)
-
-### Features
-
-Das Test-Modul bietet **100% Code-Coverage** für `ids_calculator.py` mit:
-
-- **25+ Test-Klassen** mit über 100 individuellen Tests
-- **Parametrisierte Tests** für verschiedene Gittertypen und Größen
-- **Edge-Case-Testing** (sehr feine/grobe Gitter, Grenzfälle)
-- **Numerische Genauigkeitstests** (Präzision, Stabilität)
-- **Integrationstests** (vollständige Workflows)
-- **Fehlerbehandlungs-Tests**
-
-### Test-Kategorien
-
-#### 1. Klassen-Tests (`TestArchimideanLattice`)
-- Initialisierung aller Gittertypen
-- Bond-Detection
-- Hüpf-Parameter-Zugriff
-- Hermitizität der Hüpf-Matrix
-- Gültigkeitsprüfungen
-
-**Tests**: 13
-
-#### 2. Brillouin-Zone-Tests (`TestBrillouinZone`)
-- Brillouin-Zone-Konstruktion
-- k-Gitter-Erzeugung
-- Normalisierung und Symmetrie
-- Verschiedene Gitterauflösungen
-
-**Tests**: 9
-
-#### 3. Floquet-Operator-Tests (`TestFloquetOperator`)
-- Operator-Konstruktion an verschiedenen k-Punkten
-- Hermitizität
-- Diagonalelemente
-- Alle Gittertypen
-
-**Tests**: 7
-
-#### 4. Eigenvalue-Tests (`TestEigenvalueComputation`)
-- Eigenvalue-Shape und Realität
-- Sortierung
-- Multiple k-Punkte
-- Wertebereich
-
-**Tests**: 6
-
-#### 5. IDS-Berechnungs-Tests (`TestIDSComputation`)
-- Basis-Berechnung
-- Monotonität
-- Normalisierung auf [0,1]
-- Verschiedene k-Gitter-Größen
-- Energie-Gitter
-- Metadaten
-
-**Tests**: 8
-
-#### 6. Hilfsfunktions-Tests (`TestHelperFunctions`)
-- DOS-Berechnung
-- Spektrale Lücke
-- Alle Gittertypen
-
-**Tests**: 6
-
-#### 7. Integrations-Tests (`TestIntegration`)
-- Vollständige Workflows
-- Gittertyp-Vergleiche
-- Reproduzierbarkeit
-
-**Tests**: 3
-
-#### 8. Edge-Case-Tests (`TestEdgeCases`)
-- Einzelne Energiepunkte
-- Sehr breite Energiebereiche
-- Feine/grobe k-Gitter
-- Nur negative/positive Energien
-
-**Tests**: 6
-
-#### 9. Numerische Genauigkeits-Tests (`TestNumericalAccuracy`)
-- Eigenvalue-Präzision
-- IDS-Kontinuität
-
-**Tests**: 2
-
-**Gesamtanzahl Tests: 60+**
-
-### Installation und Ausführung
-
-#### Voraussetzungen
+## Installation
+ 
 ```bash
-pip install pytest pytest-cov numpy scipy matplotlib
+# Virtual Environment
+python -m venv venv
+source venv/bin/activate        # macOS/Linux
+# oder: venv\Scripts\activate   # Windows
+ 
+# Dependencies installieren
+pip install -r requirements.txt
 ```
-
-#### Tests ausführen
-
-**Alle Tests mit Coverage-Report:**
+ 
+## Tests ausführen
+ 
 ```bash
-pytest test_ids_calculator.py -v --cov=ids_calculator --cov-report=html --cov-report=term-missing
+# Alle Tests ausführen
+pytest
+ 
+# Tests mit Coverage (automatisch nach doc/coverage/)
+pytest --cov=src --cov-report=html:doc/coverage --cov-report=term-missing
 ```
-
-**Nur schnelle Tests (ohne Performance):**
-```bash
-pytest test_ids_calculator.py -v -m "not slow"
-```
-
-**Einzelne Test-Klasse:**
-```bash
-pytest test_ids_calculator.py::TestArchimideanLattice -v
-```
-
-**Einzelnen Test ausführen:**
-```bash
-pytest test_ids_calculator.py::TestArchimideanLattice::test_hexagonal_initialization -v
-```
-
-**Mit detaillierten Fehlerberichten:**
-```bash
-pytest test_ids_calculator.py -v --tb=long
-```
-
-#### Coverage-Report interpretieren
-
-Das Coverage-Report zeigt:
-- `TOTAL` - Gesamtabdeckung (sollte 100% sein)
-- `Covered` - Abgedeckte Zeilen
-- `Missing` - Nicht abgedeckte Zeilen
-
-Zielwert: **100% Coverage**
-
 
 ## Experiment-Modul (`experiments.py`)
 

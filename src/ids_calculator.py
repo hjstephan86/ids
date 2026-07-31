@@ -13,7 +13,7 @@ Hauptalgorithmus: O(N³) Komplexität basierend auf Eigenvalue-Berechnung
 - Phase 4: Integration und Normalisierung [O(N_k² × N_band)]
 
 Autoren: Stephan Epp
-Datum: 30. Juli 2026
+Datum: 31. Juli 2026
 """
 
 import numpy as np
@@ -285,10 +285,18 @@ def compute_IDS_floquet(lattice: ArchimideanLattice,
             - metadata: Dictionary mit Berechnung-Metadaten
     """
     
+    # Berechne adaptive Regularisierungsbreite basierend auf Energieauflösung
+    if len(E_values) > 1:
+        E_range = E_values[-1] - E_values[0]
+        dE_avg = E_range / (len(E_values) - 1)
+        # σ sollte etwa 2-3 mal die durchschnittliche Energieauflösung sein
+        sigma_adaptive = 3.0 * dE_avg
+        sigma = max(sigma, sigma_adaptive)
+    
     print(f"Starte IDS-Berechnung für {lattice.lattice_type}-Gitter")
     print(f"  Diskretisierungsauflösung: N_k = {N_k} (insgesamt {N_k*N_k} k-Punkte)")
     print(f"  Energiewerte: {len(E_values)}")
-    print(f"  Regularisierungsbreite σ = {sigma}")
+    print(f"  Regularisierungsbreite σ = {sigma:.6f} (adaptiv berechnet)")
     
     # ========================================================================
     # PHASE 1: Konstruktion der Brillouin-Zone [O(N_k²)]
@@ -435,159 +443,3 @@ def compute_spectral_gap(eigenvalue_data: np.ndarray) -> float:
     max_gap_idx = np.argmax(gaps)
     
     return gaps[max_gap_idx]
-
-
-# ============================================================================
-# TESTFUNKTIONEN
-# ============================================================================
-
-def test_hexagonal_lattice():
-    """Teste IDS-Berechnung für hexagonales (6,6,6)-Gitter."""
-    print("=" * 70)
-    print("TEST 1: Hexagonales Gitter (6,6,6)")
-    print("=" * 70)
-    
-    # Erstelle Gitter
-    lattice = ArchimideanLattice("(6,6,6)")
-    
-    # Definiere Energie-Bereich
-    E_values = np.linspace(-5, 5, 100)
-    
-    # Berechne IDS
-    N_E, metadata = compute_IDS_floquet(lattice, N_k=50, E_values=E_values, verbose=True)
-    
-    # Berechne DOS
-    dos, E_dos = compute_DOS(N_E, E_values)
-    
-    # Plotte Ergebnisse
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    
-    # IDS
-    ax1.plot(E_values, N_E, 'b-', linewidth=2.5)
-    ax1.set_xlabel('Energie E', fontsize=12, fontweight='bold')
-    ax1.set_ylabel('IDS N(E)', fontsize=12, fontweight='bold')
-    ax1.set_title('Integrierte Zustandsdichte - Hexagonales Gitter (6,6,6)', fontsize=12, fontweight='bold')
-    ax1.grid(True, alpha=0.3)
-    ax1.set_facecolor('#f8f9fa')
-    
-    # DOS
-    ax2.plot(E_dos, dos, 'r-', linewidth=2.5)
-    ax2.fill_between(E_dos, dos, alpha=0.2, color='red')
-    ax2.set_xlabel('Energie E', fontsize=12, fontweight='bold')
-    ax2.set_ylabel('DOS ρ(E)', fontsize=12, fontweight='bold')
-    ax2.set_title('Density of States - Hexagonales Gitter (6,6,6)', fontsize=12, fontweight='bold')
-    ax2.grid(True, alpha=0.3)
-    ax2.set_facecolor('#f8f9fa')
-    
-    plt.tight_layout()
-    plt.savefig('/mnt/user-data/outputs/ids_hexagonal_test.pdf', dpi=300, bbox_inches='tight')
-    print("\n✓ Plot gespeichert: ids_hexagonal_test.pdf")
-    
-    return N_E, metadata
-
-
-def test_truncated_square_lattice():
-    """Teste IDS-Berechnung für truncated square (4,8,8)-Gitter."""
-    print("\n" + "=" * 70)
-    print("TEST 2: Truncated Square Gitter (4,8,8)")
-    print("=" * 70)
-    
-    lattice = ArchimideanLattice("(4,8,8)")
-    E_values = np.linspace(-5, 5, 100)
-    
-    N_E, metadata = compute_IDS_floquet(lattice, N_k=50, E_values=E_values, verbose=True)
-    
-    dos, E_dos = compute_DOS(N_E, E_values)
-    
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    
-    ax1.plot(E_values, N_E, 'g-', linewidth=2.5)
-    ax1.set_xlabel('Energie E', fontsize=12, fontweight='bold')
-    ax1.set_ylabel('IDS N(E)', fontsize=12, fontweight='bold')
-    ax1.set_title('Integrierte Zustandsdichte - Truncated Square (4,8,8)', fontsize=12, fontweight='bold')
-    ax1.grid(True, alpha=0.3)
-    ax1.set_facecolor('#f8f9fa')
-    
-    ax2.plot(E_dos, dos, 'orange', linewidth=2.5)
-    ax2.fill_between(E_dos, dos, alpha=0.2, color='orange')
-    ax2.set_xlabel('Energie E', fontsize=12, fontweight='bold')
-    ax2.set_ylabel('DOS ρ(E)', fontsize=12, fontweight='bold')
-    ax2.set_title('Density of States - Truncated Square (4,8,8)', fontsize=12, fontweight='bold')
-    ax2.grid(True, alpha=0.3)
-    ax2.set_facecolor('#f8f9fa')
-    
-    plt.tight_layout()
-    plt.savefig('/mnt/user-data/outputs/ids_truncated_square_test.pdf', dpi=300, bbox_inches='tight')
-    print("\n✓ Plot gespeichert: ids_truncated_square_test.pdf")
-    
-    return N_E, metadata
-
-
-def compare_lattice_types():
-    """Vergleiche IDS-Kurven verschiedener Archimedean-Gittertypen."""
-    print("\n" + "=" * 70)
-    print("VERGLEICH: IDS verschiedener Archimedean-Gittertypen")
-    print("=" * 70)
-    
-    lattice_types = ["(6,6,6)", "(4,8,8)", "(3,12,12)"]
-    E_values = np.linspace(-5, 5, 100)
-    
-    results = {}
-    
-    for lattice_type in lattice_types:
-        print(f"\nBerechne IDS für {lattice_type}...")
-        lattice = ArchimideanLattice(lattice_type)
-        N_E, metadata = compute_IDS_floquet(lattice, N_k=40, E_values=E_values, verbose=False)
-        results[lattice_type] = N_E
-    
-    # Plotte Vergleich
-    fig, ax = plt.subplots(figsize=(12, 7))
-    
-    colors = ['#3498db', '#e74c3c', '#2ecc71']
-    
-    for (lattice_type, N_E), color in zip(results.items(), colors):
-        ax.plot(E_values, N_E, linewidth=3, label=lattice_type, color=color, alpha=0.8)
-    
-    ax.set_xlabel('Energie E', fontsize=13, fontweight='bold')
-    ax.set_ylabel('IDS N(E)', fontsize=13, fontweight='bold')
-    ax.set_title('Vergleich: IDS verschiedener Archimedean-Gittertypen', fontsize=14, fontweight='bold')
-    ax.legend(fontsize=12, loc='upper left')
-    ax.grid(True, alpha=0.3)
-    ax.set_facecolor('#f8f9fa')
-    ax.set_ylim([-0.05, 1.05])
-    
-    plt.tight_layout()
-    plt.savefig('/mnt/user-data/outputs/ids_comparison_lattices.pdf', dpi=300, bbox_inches='tight')
-    print("\n✓ Plot gespeichert: ids_comparison_lattices.pdf")
-    
-    return results
-
-
-# ============================================================================
-# MAIN: FÜHRE ALLE TESTS AUS
-# ============================================================================
-
-if __name__ == "__main__":
-    print("\n" + "=" * 70)
-    print("IDS-RECHNER FÜR ARCHIMEDEAN-GITTER")
-    print("Numerische Berechnung mit O(N³) Floquet-Algorithmus")
-    print("=" * 70)
-    
-    # Test 1: Hexagonales Gitter
-    N_E_hex, metadata_hex = test_hexagonal_lattice()
-    
-    # Test 2: Truncated Square Gitter
-    N_E_square, metadata_square = test_truncated_square_lattice()
-    
-    # Test 3: Vergleich verschiedener Gittertypen
-    comparison_results = compare_lattice_types()
-    
-    print("\n" + "=" * 70)
-    print("✓ ALLE TESTS ABGESCHLOSSEN")
-    print("=" * 70)
-    print("\nAusgegebene Dateien:")
-    print("  - ids_hexagonal_test.pdf")
-    print("  - ids_truncated_square_test.pdf")
-    print("  - ids_comparison_lattices.pdf")
-    print("\nAlgorithmus-Komplexität: O(N_k²) × O(N_band³) = O(N³)")
-    print("=" * 70)

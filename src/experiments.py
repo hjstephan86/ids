@@ -19,8 +19,8 @@ Ausgaben:
 - experiments_detailed.json: Detaillierte Messdaten
 - spectral_data_<lattice>.json: Spektralanalyse pro Gittertyp
 
-Autoren: Stephan Epp
-Datum: 30. Juli 2026
+Autor: Stephan Epp
+Datum: 31. Juli 2026
 """
 
 import numpy as np

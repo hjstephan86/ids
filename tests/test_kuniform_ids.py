@@ -289,10 +289,12 @@ class TestKUniformLibrary:
     
     def test_library_get_tessellation_info(self):
         """Test: Abrufen von Tessellation-Informationen."""
-        info = KUniformLibrary.get_tessellation_info("(6,6,6)")
+        # Hinweis: Tessellationen in der Bibliothek verwenden Punkte (.), nicht Kommas (,)
+        info = KUniformLibrary.get_tessellation_info("(6.6.6)")
         
         assert info['k'] == 1
         assert 'name' in info
+        assert info['name'] == "Hexagonal"
     
     def test_library_invalid_tessellation(self):
         """Test: Fehlerbehandlung für ungültige Tessellationen."""

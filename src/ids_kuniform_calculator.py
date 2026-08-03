@@ -576,8 +576,15 @@ def compute_IDS_kuniform(lattice: KUniformLattice,
     # Spektralanalyse
     # ========================================================================
     eigenvalues_flat = eigenvalue_data.flatten()
-    spectral_gap = np.max(np.diff(np.sort(np.unique(eigenvalues_flat)))
-                          [np.diff(np.sort(np.unique(eigenvalues_flat))) > 1e-6])
+    
+    # Berechne spektrale Lücke mit robuster Behandlung von leeren Arrays
+    sorted_unique_evals = np.sort(np.unique(eigenvalues_flat))
+    if len(sorted_unique_evals) > 1:
+        diff_evals = np.diff(sorted_unique_evals)
+        significant_gaps = diff_evals[diff_evals > 1e-6]
+        spectral_gap = np.max(significant_gaps) if len(significant_gaps) > 0 else np.max(diff_evals)
+    else:
+        spectral_gap = 0.0
     
     # ========================================================================
     # Zusammenfassung und Metadaten
@@ -586,7 +593,7 @@ def compute_IDS_kuniform(lattice: KUniformLattice,
         'tessellation': lattice.name,
         'k_uniform': lattice.k_uniform,
         'wallpaper_group': lattice.wallpaper_group,
-        'vertex_orbits': lattice.num_vertex_orbits,
+        'num_vertex_orbits': lattice.num_vertex_orbits,
         'N_k': N_k,
         'num_k_points': num_k_points,
         'num_bands': num_bands,

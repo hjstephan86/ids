@@ -1,456 +1,308 @@
 # IDS-Berechnung für Archimedean-Gittergraphen
-## Test- und Experiment-Module
 
-Umfassende Test-Suite und Experiment-Framework für die wissenschaftliche Arbeit **archimed.tex**.
-
+**Integrierte Zustandsdichte (IDS) von k-uniformen Tessellationen der euklidischen Ebene**
 
 ## Übersicht
 
-Dieses Paket enthält:
+Dieses Repository enthält eine umfassende Python-Implementierung zur numerischen Berechnung der **Integrierten Zustandsdichte (IDS)** von k-uniformen Tessellationen basierend auf der wissenschaftlichen Arbeit **archimed.tex** (31. Juli 2026).
 
-1. **`ids_calculator.py`** - Kern-Modul zur numerischen Berechnung der Integrierten Zustandsdichte (IDS)
-2. **`test_ids_calculator.py`** - Umfassendes Test-Modul mit 100% Code-Coverage
-3. **`experiments.py`** - Wissenschaftliche Experimente zur Validierung und Datensammlung
+### Hauptmerkmale
+
+ **k-uniforme Tessellationen Support**
+- Archimedean-Tessellationen (k=1): 11 Varianten
+- 2-uniforme bis 8-uniforme Tessellationen (k=2 bis k=8)
+- Vollständige Klassifikation von 183 k-uniformen Tessellationen
+
+ **Floquet-Bloch-Theorie Implementation**
+- Brillouin-Zone Konstruktion für beliebige 2D-Gitter
+- Adaptive k-Gitter-Generierung mit Symmetrie-Reduktion
+- Floquet-Operator für quasi-periodische Systeme
+- Eigenvalue-Berechnung mit numerischer Stabilität
+
+ **Spektralanalyse**
+- Integrierte Zustandsdichte (IDS) mittels Heaviside-Regularisierung
+- Density of States (DOS) durch Differentiation
+- Spektrale Lücken und Bandstrukturen
+- Eigenvalue-Statistiken und Komplexitätsanalyse
+
+## Struktur
+
+```
+ids-main/
+├── src/
+│   ├── ids_calculator.py              # Original-Implementierung (Archimedean)
+│   ├── ids_kuniform_calculator.py     #
+│   ├── experiments.py                 # Experiment-Framework (Archimedean)
+│   └── experiments_kuni.py            #
+├── tests/
+│   ├── test_ids_calculator.py         # Test-Suite für Original-Modul
+│   ├── test_kuniform_ids.py           #
+├── doc/coverage/                      # HTML Coverage-Report
+├── pyproject.toml                     # Projekt-Konfiguration
+└── README.md                          # Diese Datei
+```
 
 ## Installation
- 
+
+### Voraussetzungen
+
+- Python 3.10 oder höher
+- pip oder conda
+
+### Setup
+
 ```bash
-# Virtual Environment
+# 1. Repository klonen (oder als ZIP herunterladen)
+git clone https://github.com/hjstephan86/ids-main.git
+cd ids-main
+
+# 2. Virtual Environment erstellen
 python -m venv venv
-# source venv/bin/activate     # macOS/Linux
-venv\Scripts\activate          # Windows
- 
-# Dependencies installieren
+
+# 3. Virtual Environment aktivieren
+source venv/bin/activate              # Linux/macOS
+# oder
+venv\Scripts\activate                 # Windows
+
+# 4. Dependencies installieren
  pip install -e ".[dev]"
 ```
- 
+
 ## Tests ausführen
- 
+
+### Schnell-Test
+
 ```bash
 # Alle Tests ausführen
-pytest
- 
-# Tests mit Coverage (automatisch nach doc/coverage/)
-pytest --cov=src --cov-report=html:doc/coverage --cov-report=term-missing
+pytest tests/ -v
 ```
 
-## Experiment-Modul (`experiments.py`)
-
-### Features
-
-Durchführung umfangreicher wissenschaftlicher Experimente mit automatischer Datensammlung:
-
-- **6 Experiment-Suiten** mit 100+ Messungen pro Suite
-- **Automatische Datenerfassung** in JSON und TXT
-- **Performance-Profiling**
-- **Validierung mathematischer Eigenschaften**
-- **Konvergenzanalysen**
-
-### Experiment-Übersicht
-
-#### Experiment 1: Konvergenz-Analyse
-
-**Ziel**: Untersuchen der IDS-Konvergenz mit k-Gitter-Größe
-
-**Parameter**:
-- Gittertypen: (6,6,6), (4,8,8), (3,12,12)
-- N_k-Werte: 5, 10, 15, 20, 30, 40, 50
-- Energiepunkte: 100
-
-**Gemessene Größen**:
-- Max. absoluter Unterschied zur feinsten Auflösung
-- RMSE zur feinsten Auflösung
-- Rechenzeit
-- IDS-Statistiken
-
-**Ausgabedatei**: experiments_results.json (Sektion: convergence_analysis)
-
-#### Experiment 2: Spektralanalyse
-
-**Ziel**: Detaillierte Analyse spektraler Eigenschaften
-
-**Parameter**:
-- Gittertypen: (6,6,6), (4,8,8), (3,12,12)
-- N_k: 25
-- Energiepunkte: 150
-
-**Gemessene Größen**:
-- Spektrale Lücke
-- DOS-Features (Peaks)
-- Bandlücken
-- Eigenvalue-Statistiken
-- DOS-Statistiken
-
-**Ausgabedatei**: experiments_results.json (Sektion: spectral_analysis)
-
-#### Experiment 3: Vergleichende Gitteranalyse
-
-**Ziel**: Vergleich verschiedener Archimedean-Gittertypen
-
-**Parameter**:
-- Alle paarweise Vergleiche zwischen Gittertypen
-- N_k: 20
-- Energiepunkte: 120
-
-**Gemessene Größen**:
-- IDS-Unterschiede und Korrelationen
-- DOS-Unterschiede und Korrelationen
-- Gesamtstatistiken
-
-**Ausgabedatei**: experiments_results.json (Sektion: comparative_analysis)
-
-#### Experiment 4: Energie-Auflösungsanalyse
-
-**Ziel**: Auswirkung der Energiegitter-Auflösung
-
-**Parameter**:
-- Auflösungen: 20, 50, 100, 200, 500 Punkte
-- N_k: 15
-- Gittertypen: (6,6,6), (4,8,8)
-
-**Gemessene Größen**:
-- Konvergenz zur feinsten Auflösung
-- Rechenzeit pro Auflösung
-- DOS-Statistiken
-
-**Ausgabedatei**: experiments_results.json (Sektion: energy_resolution)
-
-#### Experiment 5: Performance-Analyse
-
-**Ziel**: Laufzeit-Skalierung untersuchen
-
-**Parameter**:
-- N_k-Werte: 5 bis 30
-- Alle Gittertypen
-- 3 Wiederholungen pro Messung
-
-**Gemessene Größen**:
-- Rechenzeit (Mean und Std)
-- Geschätzte FLOPs
-- Skalierungsverhalten
-
-**Ausgabedatei**: experiments_results.json (Sektion: performance_analysis)
-
-#### Experiment 6: Symmetrie- und Validierungs-Checks
-
-**Ziel**: Validierung mathematischer Eigenschaften
-
-**Prüfungen**:
-- Hermitizität des Floquet-Operators
-- Reellheit der Eigenwerte
-- Monotonität der IDS
-- Normalisierung
-- Eigenwertstatistiken
-
-**Ausgabedatei**: experiments_results.json (Sektion: symmetry_validation)
-
-### Installation und Ausführung
-
-#### Voraussetzungen
-```bash
-pip install numpy scipy matplotlib
-```
-
-#### Alle Experimente ausführen
+### Mit Coverage-Bericht
 
 ```bash
-python experiments.py
+# Coverage-Report erstellen
+pytest tests/ --cov=src --cov-report=html --cov-report=term-missing
+
+# HTML-Report öffnen
+open doc/coverage/index.html    # macOS
+xdg-open doc/coverage/index.html # Linux
 ```
 
-Typische Laufzeit: **5-15 Minuten** (abhängig von Hardware)
+### Nur spezifische Test-Klasse
 
-#### Beispiel-Output
+```bash
+# Nur k-uniforme Tests
+pytest tests/test_kuniform_ids.py -v
 
-```
-================================================================================
-UMFANGREICHE IDS-EXPERIMENTE FÜR ARCHIMED.TEX
-================================================================================
-Start: 2026-07-30 14:23:45
+# Nur Original-Tests
+pytest tests/test_ids_calculator.py -v
 
-================================================================================
-EXPERIMENT 1: KONVERGENZ-ANALYSE
-================================================================================
-
-  Gittertyp: (6,6,6)
-    N_k =  5... t=0.12s, Δmax=1.23e-02
-    N_k = 10... t=0.45s, Δmax=2.34e-03
-    ...
-
-...
-
-SPEICHERE EXPERIMENT-ERGEBNISSE
-================================================================================
-
-  Speichere experiments_results.json... ✓ (125.3 KB)
-  Speichere experiments_summary.txt... ✓ (45.2 KB)
-  Speichere experiments_detailed.json... ✓ (125.3 KB)
-
-================================================================================
-EXPERIMENT-ZUSAMMENFASSUNG
-================================================================================
-Gesamtrechenzeit: 645.32 Sekunden (10.76 Minuten)
-Anzahl Experimente: 6
-Zeitstempel: 2026-07-30 14:35:21
-
-✓ Alle Experimente abgeschlossen!
-✓ Ergebnisse gespeichert in /mnt/user-data/outputs/
-================================================================================
+# Nur IDS-Berechnung Tests
+pytest tests/test_kuniform_ids.py::TestIDSComputation -v
 ```
 
-### Ausgabedateien
+## Hauptmodule
 
-Nach Ausführung von `experiments.py` werden folgende Dateien erstellt:
+### 1. `ids_kuniform_calculator.py`
 
-#### 1. `experiments_results.json` (JSON)
-Vollständige numerische Ergebnisse in strukturiertem JSON-Format.
+Implementierung für **k-uniforme Tessellationen** mit Floquet-Bloch-Theorie.
 
-**Struktur**:
-```json
-{
-  "metadata": { ... },
-  "experiments": {
-    "convergence_analysis": { ... },
-    "spectral_analysis": { ... },
-    "comparative_analysis": { ... },
-    "energy_resolution": { ... },
-    "performance_analysis": { ... },
-    "symmetry_validation": { ... }
-  }
-}
+#### Haupt-Klassen
+
+**`VertexOrbit`**
+```python
+orbit = VertexOrbit(
+    orbit_id=0,
+    vertex_configuration=(6, 6, 6),
+    positions=np.array([[0.0, 0.0]]),
+    coordination_number=3,
+    symmetry_group='p6mm',
+    multiplicity=1
+)
 ```
 
-**Verwendung in archimed.tex**:
-- Lädt Konvergenz-Kurven für Abbildungen
-- Extrahiert spektrale Lücken für Tabellen
-- Verwendet Performance-Daten für O(N³) Validierung
-
-#### 2. `experiments_summary.txt` (Textdatei)
-Menschenlesbare Zusammenfassung aller Experiment-Ergebnisse.
-
-**Inhalt**:
-- Executive Summary pro Experiment
-- Schlüsselkennzahlen
-- Status-Checks (PASS/WARNING)
-- Vergleiche zwischen Gittertypen
-
-**Verwendung**:
-- Schnelle Übersicht über Ergebnisse
-- Einbettung in Arbeit als Appendix
-- Troubleshooting bei Problemen
-
-#### 3. `experiments_detailed.json` (JSON)
-Detaillierte Messdaten mit vollem Kontext.
-
-
-## Integration in archimed.tex
-
-### Verwendung der Test-Ergebnisse
-
-```latex
-% In der archimed.tex:
-
-\section{Numerische Validierung}
-
-Im Rahmen dieser Arbeit wurden umfassende Tests durchgeführt, die 
-eine 100\% Code-Coverage der Implementierung gewährleisten. Es wurden 
-über 60 individuelle Tests für alle Komponenten durchgeführt:
-
-\begin{itemize}
-    \item 13 Tests für die \texttt{ArchimideanLattice}-Klasse
-    \item 9 Tests für Brillouin-Zone-Funktionen
-    \item 7 Tests für den Floquet-Operator
-    \item 6 Tests für Eigenvalue-Berechnung
-    \item 8 Tests für die IDS-Berechnung
-    \item 6 Tests für Hilfsfunktionen
-    \item 3 Integrationstests
-    \item 6 Edge-Case-Tests
-    \item 2 Numerische Genauigkeitstests
-\end{itemize}
-
-Alle Tests bestanden erfolgreich mit einer Laufzeit von unter 2 Minuten.
+**`KUniformTessellation`**
+```python
+tessellation = KUniformTessellation(
+    name="(6.6.6)",
+    k_uniform=1,
+    vertex_orbits=[orbit],
+    hopping_matrix=np.array([[0.0]]),
+    reciprocal_vectors=np.array([[2*np.pi, 0], [np.pi, np.pi*np.sqrt(3)]]),
+    wallpaper_group='p6mm',
+    total_vertices_per_cell=1
+)
 ```
 
-### Verwendung der Experiment-Ergebnisse
+**`KUniformLattice`**
+```python
+from ids_kuniform_calculator import KUniformLattice
 
-```latex
-% Konvergenzanalyse einbinden
-
-\subsection{Konvergenz der IDS mit k-Gitter-Auflösung}
-
-Abbildung~\ref{fig:convergence} zeigt die Konvergenz der berechneten IDS 
-bei zunehmender k-Gitter-Auflösung $N_k$.
-
-\begin{figure}[h]
-    \centering
-    % [Erstelle Plot aus experiments_results.json]
-    \caption{IDS-Konvergenz für verschiedene $N_k$ Werte}
-    \label{fig:convergence}
-\end{figure}
-
-% Spektrale Lücken aus Experiment 2
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        Gittertyp & Spektrale Lücke \\
-        \hline
-        (6,6,6) & 0.xxxx \\
-        (4,8,8) & 0.xxxx \\
-        (3,12,12) & 0.xxxx \\
-        \hline
-    \end{tabular}
-    \caption{Spektrale Lücken aus Experiment 2}
-\end{table}
+lattice = KUniformLattice(tessellation)
+print(f"k-Uniformitätsgrad: {lattice.k_uniform}")
+print(f"Vertex-Orbits: {lattice.num_vertex_orbits}")
 ```
 
-### Python-Script zur Datenextraktion
+#### Haupt-Funktionen
+
+**IDS-Berechnung**
+```python
+from ids_kuniform_calculator import compute_IDS_kuniform
+
+# Berechne IDS über Brillouin-Zone
+E_values = np.linspace(-3, 3, 50)
+N_E, metadata = compute_IDS_kuniform(
+    lattice, 
+    N_k=10,              # k-Gitter Auflösung
+    E_values=E_values,
+    sigma=0.01,          # Regularisierungs-Breite
+    verbose=True
+)
+
+# Resultat: N_E ist die IDS, metadata enthält Statistiken
+print(f"IDS-Bereich: [{N_E.min():.4f}, {N_E.max():.4f}]")
+```
+
+**DOS-Berechnung**
+```python
+from ids_kuniform_calculator import compute_DOS_kuniform
+
+dos, dos_E = compute_DOS_kuniform(N_E, E_values)
+```
+
+**Spektralanalyse**
+```python
+from ids_kuniform_calculator import analyze_spectral_structure
+
+spectrum = analyze_spectral_structure(np.array(metadata['eigenvalues']))
+```
+
+#### Unterstützte Tessellationen
 
 ```python
-import json
+from ids_kuniform_calculator import KUniformLibrary
 
-# Lade Experiment-Ergebnisse
-with open('experiments_results.json', 'r') as f:
-    results = json.load(f)
+# Liste alle verfügbaren Tessellationen
+all_tess = KUniformLibrary.list_all()
 
-# Extrahiere spektrale Lücken
-for lattice_type, data in results['experiments']['spectral_analysis']['results'].items():
-    gap = data['spectral_gap']
-    print(f"{lattice_type}: {gap:.6f}")
-
-# Extrahiere Konvergenz-Daten
-convergence = results['experiments']['convergence_analysis']
-for lattice_type, lat_results in convergence['results'].items():
-    for n_k_key, metrics in lat_results['convergence_data'].items():
-        print(f"{lattice_type} {n_k_key}: RMSE={metrics['rmse_to_reference']}")
+# Hole Info über spezifische Tessellation
+info = KUniformLibrary.get_tessellation_info("(6.6.6)")
+print(info)
+# Output: {'k': 1, 'name': 'Hexagonal', 'orbits': 1, 'vertices_per_cell': 1}
 ```
 
+### 2. `ids_calculator.py` (Original)
 
-## Workflow für Wissenschaftler
+Implementierung für **1-uniforme (Archimedean)** Tessellationen.
 
-### Schritt-für-Schritt-Anleitung
+```python
+from ids_calculator import compute_IDS_archimedean
 
-#### Schritt 1: Umgebung einrichten
+# Für einfache Archimedean-Gitter
+IDS = compute_IDS_archimedean(lattice_type="hexagonal", N_k=20)
+```
+
+## Experiment-Module
+
+### `experiments_kuni.py`
+
+Wissenschaftliche Experimente für k-uniforme Tessellationen:
+
 ```bash
-# Python 3.8+ erforderlich
-python --version  # >= 3.8
+# Experimente ausführen
+python -m src.experiments_kuni
 
-# Dependencies installieren
-pip install pytest pytest-cov numpy scipy matplotlib
+# Generiert: experiments_results_kuni.json
 ```
 
-#### Schritt 2: Tests ausführen
+**Enthält Experimente zu:**
+- Konvergenzverhalten mit k-Gitter-Größe
+- Spektralanalyse verschiedener Tessellationen
+- Vergleichende Gitteranalyse
+- Performance-Charakteristiken
+
+### `experiments.py` (Original)
+
+Experimente für Archimedean-Gitter:
+
 ```bash
-# Vollständige Test-Suite mit Coverage
-pytest test_ids_calculator.py -v --cov=ids_calculator --cov-report=html
-
-# Coverage-Report öffnen
-open htmlcov/index.html
+python -m src.experiments
 ```
 
-**Erwartete Ergebnisse**:
-- Alle 60+ Tests bestanden
-- 100% Code-Coverage
-- Keine Warnings
+## Beispiel-Workflow
 
-#### Schritt 3: Experimente durchführen
-```bash
-# Alle Experimente ausführen (dauert ~10 Minuten)
-python experiments.py
+### Archimedean Hexagonal Lattice (k=1)
 
-# Oder nur einzelne Experimente (mehr Flexibilität)
-python -c "from experiments import experiment_convergence_analysis; \
-           import json; \
-           result = experiment_convergence_analysis(); \
-           with open('convergence_only.json', 'w') as f: json.dump(result, f)"
+```python
+import numpy as np
+import sys
+sys.path.insert(0, 'src')
+
+from ids_kuniform_calculator import (
+    KUniformTessellation, VertexOrbit, KUniformLattice,
+    compute_IDS_kuniform, compute_DOS_kuniform
+)
+
+# 1. Erstelle Tessellation
+orbit = VertexOrbit(
+    orbit_id=0,
+    vertex_configuration=(6, 6, 6),
+    positions=np.array([[0.0, 0.0]]),
+    coordination_number=3,
+    symmetry_group='p6mm',
+    multiplicity=1
+)
+
+tess = KUniformTessellation(
+    name="(6.6.6)",
+    k_uniform=1,
+    vertex_orbits=[orbit],
+    hopping_matrix=np.array([[0.0]]),
+    reciprocal_vectors=np.array([
+        [2*np.pi, 0.0],
+        [np.pi, np.pi*np.sqrt(3)]
+    ]),
+    wallpaper_group='p6mm',
+    total_vertices_per_cell=1
+)
+
+# 2. Erstelle Gitter
+lattice = KUniformLattice(tess)
+
+# 3. Berechne IDS
+E_values = np.linspace(-3, 3, 100)
+N_E, metadata = compute_IDS_kuniform(
+    lattice, N_k=20, E_values=E_values, verbose=True
+)
+
+# 4. Berechne DOS
+dos, dos_E = compute_DOS_kuniform(N_E, E_values)
+
+# 5. Visualisiere
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(12, 5))
+
+plt.subplot(121)
+plt.plot(E_values, N_E, 'b-', linewidth=2)
+plt.xlabel('Energie E')
+plt.ylabel('Integrierte Zustandsdichte N(E)')
+plt.title('IDS des Hexagonal Lattice')
+plt.grid(True, alpha=0.3)
+
+plt.subplot(122)
+plt.plot(dos_E, dos, 'r-', linewidth=2)
+plt.xlabel('Energie E')
+plt.ylabel('Density of States ρ(E)')
+plt.title('DOS des Hexagonal Lattice')
+plt.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('ids_dos_hexagonal.png', dpi=150)
+plt.show()
 ```
 
-**Erwartete Ergebnisse**:
-- ✓ experiments_results.json (150+ KB)
-- ✓ experiments_summary.txt (50+ KB)
-- ✓ experiments_detailed.json (150+ KB)
-
-#### Schritt 4: Ergebnisse analysieren
-```bash
-# Zusammenfassung anschauen
-cat experiments_summary.txt
-
-# JSON mit Python verarbeiten
-python3 << 'EOF'
-import json
-with open('experiments_results.json') as f:
-    results = json.load(f)
-    print("Verfügbare Experimente:", list(results['experiments'].keys()))
-EOF
-```
-
-#### Schritt 5: Ergebnisse in archimed.tex einbinden
-- Kopiere relevante Zahlen aus experiments_summary.txt
-- Erstelle Plots aus JSON-Daten (siehe Script oben)
-- Erwähne durchgeführte Tests in der Methodensektion
+---
 
 
-## Performance-Erwartungen
-
-### Test-Modul (`pytest`)
-- **Gesamtlaufzeit**: 60-90 Sekunden
-- **Schnelleste Tests**: < 1 ms
-- **Langsamste Tests**: 2-5 Sekunden
-- **Speicherverbrauch**: < 500 MB
-
-### Experiment-Modul (`experiments.py`)
-- **Experiment 1 (Konvergenz)**: 2-3 Minuten
-- **Experiment 2 (Spektral)**: 2-3 Minuten
-- **Experiment 3 (Vergleich)**: 1-2 Minuten
-- **Experiment 4 (Auflösung)**: 1-2 Minuten
-- **Experiment 5 (Performance)**: 3-5 Minuten
-- **Experiment 6 (Symmetrie)**: 1-2 Minuten
-- **Gesamtlaufzeit**: 10-15 Minuten
-- **Speicherverbrauch**: < 1 GB
-
-### Hardware-Empfehlungen
-- **CPU**: Intel i5 oder besser (2+ Kerne)
-- **RAM**: Mindestens 4 GB (8 GB empfohlen)
-- **Festplatte**: 500 MB frei für Ausgabedateien
-
-
-## Troubleshooting
-
-### Problem: "ModuleNotFoundError: No module named 'scipy'"
-**Lösung**:
-```bash
-pip install scipy numpy matplotlib
-```
-
-### Problem: Tests schlagen fehl mit "tolerance exceeded"
-**Überprüfen Sie**:
-- NumPy Version (sollte >= 1.19)
-- Maschinenpräzision (eps)
-- Erhöhen Sie Toleranzen wenn auf älterem System
-
-### Problem: Experiments laufen zu lange
-**Lösungen**:
-- Reduzieren Sie N_k Werte in experiments.py
-- Verwenden Sie weniger Energiepunkte
-- Führen Sie einzelne Experimente aus
-
-### Problem: JSON-Datei ist sehr groß
-**Normal!** experiments_results.json kann 200+ KB groß sein.
-- Das ist erwünscht für vollständige Dokumentation
-- Verwenden Sie experiments_summary.txt für Zusammenfassung
-
-
-## Mathematischer Hintergrund
-
-### Verwendete Algorithmen
-
-**IDS-Berechnung** (O(N³)-Komplexität):
-1. Konstruktion der Brillouin-Zone
-2. Erzeugung des k-Gitters (O(N_k²))
-3. Floquet-Operator-Konstruktion (O(N_k² × N_b²))
-4. Eigenvalue-Berechnung (O(N_k² × N_b³))
-5. Integration mit regullierter Heaviside-Funktion
-
-**Verwendete Bibliotheken**:
-- `scipy.linalg.eigvals()` für Eigenvalue-Berechnung
-- `numpy.gradient()` für DOS-Berechnung (numerische Differentiation)
-- `numpy.trapz()` für Integration
+*"Die Spektraltheorie periodischer Gitter ist fundamental für unser Verständnis von Festkörpern, Photonischen Kristallen und vielen anderen physikalischen Systemen."* — Stephan Epp

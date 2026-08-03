@@ -17,11 +17,11 @@ Dieses Paket enthält:
 ```bash
 # Virtual Environment
 python -m venv venv
-source venv/bin/activate        # macOS/Linux
-# oder: venv\Scripts\activate   # Windows
+# source venv/bin/activate     # macOS/Linux
+venv\Scripts\activate          # Windows
  
 # Dependencies installieren
-pip install -r requirements.txt
+ pip install -e ".[dev]"
 ```
  
 ## Tests ausführen

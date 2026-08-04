@@ -519,7 +519,7 @@ def run_all_experiments() -> Dict[str, Any]:
 # EXPORT UND VISUALISIERUNG
 # ============================================================================
 
-def export_experiment_results(results: Dict, output_dir: str = '.'):
+def export_experiment_results(results: Dict, output_dir: str = 'src/results/'):
     """Exportiere Experiment-Ergebnisse."""
     
     output_dir = Path(output_dir)

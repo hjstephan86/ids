@@ -813,7 +813,7 @@ def save_results_to_files(all_results: Dict[str, Any]) -> None:
     print("SPEICHERE EXPERIMENT-ERGEBNISSE")
     print("=" * 80)
     
-    output_dir = Path('/mnt/user-data/outputs')
+    output_dir = Path('src/results/')
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 1. Vollständige JSON-Datei
@@ -964,7 +964,7 @@ def main():
     print(f"Anzahl Experimente: {len(all_results['experiments'])}")
     print(f"Zeitstempel: {time.strftime('%Y-%m-%d %H:%M:%S')}")
     print("\n✓ Alle Experimente abgeschlossen!")
-    print("✓ Ergebnisse gespeichert in /mnt/user-data/outputs/")
+    print("✓ Ergebnisse gespeichert in src/results/")
     print("=" * 80)
 
 

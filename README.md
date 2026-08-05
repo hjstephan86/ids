@@ -4,7 +4,7 @@
 
 ## Übersicht
 
-Dieses Repository enthält eine umfassende Python-Implementierung zur numerischen Berechnung der **Integrierten Zustandsdichte (IDS)** von k-uniformen Tessellationen basierend auf der wissenschaftlichen Arbeit **archimed.tex** (31. Juli 2026).
+Dieses Repository enthält eine umfassende Python-Implementierung zur numerischen Berechnung der **Integrierten Zustandsdichte (IDS)** von k-uniformen Tessellationen basierend auf der wissenschaftlichen Arbeit aus https://github.com/hjstephan86/science/tree/main/science/archimed.
 
 ### Hauptmerkmale
 
@@ -25,23 +25,6 @@ Dieses Repository enthält eine umfassende Python-Implementierung zur numerische
 - Spektrale Lücken und Bandstrukturen
 - Eigenvalue-Statistiken und Komplexitätsanalyse
 
-## Struktur
-
-```
-ids-main/
-├── src/
-│   ├── ids_calculator.py              # Original-Implementierung (Archimedean)
-│   ├── ids_kuniform_calculator.py     #
-│   ├── experiments.py                 # Experiment-Framework (Archimedean)
-│   └── experiments_kuni.py            #
-├── tests/
-│   ├── test_ids_calculator.py         # Test-Suite für Original-Modul
-│   ├── test_kuniform_ids.py           #
-├── doc/coverage/                      # HTML Coverage-Report
-├── pyproject.toml                     # Projekt-Konfiguration
-└── README.md                          # Diese Datei
-```
-
 ## Installation
 
 ### Voraussetzungen
@@ -53,8 +36,8 @@ ids-main/
 
 ```bash
 # 1. Repository klonen (oder als ZIP herunterladen)
-git clone https://github.com/hjstephan86/ids-main.git
-cd ids-main
+git clone https://github.com/hjstephan86/ids.git
+cd ids
 
 # 2. Virtual Environment erstellen
 python -m venv venv
@@ -74,18 +57,7 @@ venv\Scripts\activate                 # Windows
 
 ```bash
 # Alle Tests ausführen
-pytest tests/ -v
-```
-
-### Mit Coverage-Bericht
-
-```bash
-# Coverage-Report erstellen
-pytest tests/ --cov=src --cov-report=html --cov-report=term-missing
-
-# HTML-Report öffnen
-open doc/coverage/index.html    # macOS
-xdg-open doc/coverage/index.html # Linux
+pytest
 ```
 
 ### Nur spezifische Test-Klasse
@@ -204,15 +176,12 @@ IDS = compute_IDS_archimedean(lattice_type="hexagonal", N_k=20)
 
 ## Experiment-Module
 
-### `experiments_kuni.py`
+### `experiments_kuniform.py`
 
 Wissenschaftliche Experimente für k-uniforme Tessellationen:
 
 ```bash
-# Experimente ausführen
-python -m src.experiments_kuni
-
-# Generiert: experiments_results_kuni.json
+python -m src.experiments_kuniform
 ```
 
 **Enthält Experimente zu:**
@@ -302,7 +271,4 @@ plt.savefig('ids_dos_hexagonal.png', dpi=150)
 plt.show()
 ```
 
----
-
-
-*"Die Spektraltheorie periodischer Gitter ist fundamental für unser Verständnis von Festkörpern, Photonischen Kristallen und vielen anderen physikalischen Systemen."* — Stephan Epp
+*Die Spektraltheorie periodischer Gitter ist fundamental für unser Verständnis von Festkörpern, Photonischen Kristallen und vielen anderen physikalischen Systemen.*

@@ -1,12 +1,10 @@
 # Praktische Anwendungen des IDS-Algorithmus für k-uniforme Tessellationen
 
-**Von: Stephan Epp**  
-**Stand: 3. August 2026**  
-**Status: 10 konkrete implementierbare Projekte**
+**Von**: Stephan Epp  
+**Stand**: 3. August 2026  
+**Status**: 10 konkrete implementierbare Projekte
 
----
-
-## Übersicht - 10 praktische Anwendungen
+## Übersicht der 10 praktischen Anwendungen
 
 | # | Anwendung | Industrie | Komplexität | ROI | Timeframe |
 |---|-----------|-----------|-------------|-----|-----------|
@@ -21,7 +19,6 @@
 | 9 | Sensor Array Optimizer | IoT/Embedded | Hoch | ⭐⭐⭐⭐⭐ | 3-6 Monate |
 | 10 | Energy-Harvester Simulator | Erneuerbare Energien | Mittel | ⭐⭐⭐⭐ | 3-4 Monate |
 
----
 
 ## Projekt 1: Photonische Kristall Designer für Telekommunikation
 
@@ -161,7 +158,6 @@ async def list_tessellations():
 - **Kosten:** €100k Designkosten gespart pro Projekt
 - **Genauigkeit:** +30% bessere Effizienz durch Optimierung
 
----
 
 ## Projekt 2: Metamaterial Bandgap Analyzer
 
@@ -233,7 +229,6 @@ class MetamaterialAnalyzer:
 - Gewichtseinsparung durch optimierte Strukturen
 - Umweltvorschriften erfüllt
 
----
 
 ## Projekt 3: Optischer Filter Optimizer für LED/Laser-Industrie
 
@@ -332,7 +327,6 @@ class OpticalFilterOptimizer:
 - **Corning:** Für Glasfaser-Technologien
 - **Infineon:** Für optische Sensoren
 
----
 
 ## Projekt 4: 5G/6G Antenna Tuner
 
@@ -428,7 +422,6 @@ class AntennaMetamaterialTuner:
 - Full Product: 6-8 Monate
 - First Integration: 12-15 Monate
 
----
 
 ## Projekt 5: Quantendraht Simulator für Halbleiter-Industrie
 
@@ -485,7 +478,6 @@ class QuantumWireSimulator:
 - **Commercial Use:** €100k-500k/Jahr
 - **Per-Device Royalties:** €0.10-1.00
 
----
 
 ## Projekt 6: Wärmeleitungs-Analyzer für Thermomanagement
 
@@ -552,7 +544,6 @@ class ThermalConductivityOptimizer:
 - Intel/AMD: Könnte **5-10% besser CPU Cooling** erreichen
 - = **€100M-500M Zusatzmarge** pro Generation
 
----
 
 ## Projekt 7: Akustischer Isolator Designer
 
@@ -619,7 +610,6 @@ class AcousticMetamaterialDesigner:
 - BMW: Motorlärm-Reduktion um 5-8 dB = **Premium-Verkaufsargument**
 - Wert: **€500-1000 pro Auto** = **€50-100M** für 50k Autos/Jahr
 
----
 
 ## Projekt 8: Topologische Materialien Explorer
 
@@ -635,7 +625,6 @@ Identifizieren und designen Sie **topologische Isolatoren und Semimetalle** auto
 - **Grundlagen-Forschung** mit hohem **Patent-Potenzial**
 - **Spin-Off Potenzial:** €50-500M+ (abhängig von Kommerzialisierung)
 
----
 
 ## Projekt 9: IoT Sensor Array Optimizer
 
@@ -671,7 +660,6 @@ class SensorArrayOptimizer:
 - **Software License:** €500-2000/Monat
 - **Chipset Integration:** €100k-500k
 
----
 
 ## Projekt 10: Energy Harvester Simulator
 

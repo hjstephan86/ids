@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src\ids_kuniform_calculator.py: 79.20%</title>
+    <title>Coverage for src\ids_kuniform_calculator.py: 80.00%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_c827f16f.png">
     <link rel="stylesheet" href="style_cb_0853b3de.css" type="text/css">
     <script src="coverage_html_cb_188fc9a4.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src<span class="sep">\</span>ids_kuniform_calculator.py</b>:
-            <span class="pc_cov">79.20%</span>
+            <span class="pc_cov">80.00%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -55,8 +55,8 @@
             </div>
         </aside>
         <h2>
-            <span class="text">249 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">198<span class="text"> run</span></button>
+            <span class="text">262 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">211<span class="text"> run</span></button>
             <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">51<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">16<span class="text"> excluded</span></button>
             <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">13<span class="text"> partial</span></button>
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="index.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.3">coverage.py v7.15.3</a>,
-            created at 2026-08-05 09:05 +0200
+            created at 2026-08-05 13:46 +0200
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -144,12 +144,12 @@
     <p class="run"><span class="n"><a id="t60" href="#t60">60</a></span><span class="t"><span class="key">class</span> <span class="nam">VertexOrbit</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t61" href="#t61">61</a></span><span class="t">    <span class="str">"""Repr&#228;sentation eines Vertex-Orbits in einer k-uniformen Tessellation."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t62" href="#t62">62</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t63" href="#t63">63</a></span><span class="t">    <span class="nam">orbit_id</span><span class="op">:</span> <span class="nam">int</span>                          <span class="com"># Eindeutige ID des Orbits</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t64" href="#t64">64</a></span><span class="t">    <span class="nam">vertex_configuration</span><span class="op">:</span> <span class="nam">Tuple</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="op">...</span><span class="op">]</span>  <span class="com"># Polygon-Konfiguration z.B. (3, 12, 12)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t65" href="#t65">65</a></span><span class="t">    <span class="nam">positions</span><span class="op">:</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span>                  <span class="com"># Atompositionen in der Einheitszelle</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t66" href="#t66">66</a></span><span class="t">    <span class="nam">coordination_number</span><span class="op">:</span> <span class="nam">int</span>               <span class="com"># Koordinationszahl (Grad)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t67" href="#t67">67</a></span><span class="t">    <span class="nam">symmetry_group</span><span class="op">:</span> <span class="nam">str</span>                    <span class="com"># Wallpaper-Gruppe</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t68" href="#t68">68</a></span><span class="t">    <span class="nam">multiplicity</span><span class="op">:</span> <span class="nam">int</span>                      <span class="com"># Anzahl der Atome pro Einheitszelle</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t63" href="#t63">63</a></span><span class="t">    <span class="nam">orbit_id</span><span class="op">:</span> <span class="nam">int</span>                          <span class="com"># Eindeutige ID des Orbits</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t64" href="#t64">64</a></span><span class="t">    <span class="nam">vertex_configuration</span><span class="op">:</span> <span class="nam">Tuple</span><span class="op">[</span><span class="nam">int</span><span class="op">,</span> <span class="op">...</span><span class="op">]</span>  <span class="com"># Polygon-Konfiguration z.B. (3, 12, 12)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t65" href="#t65">65</a></span><span class="t">    <span class="nam">positions</span><span class="op">:</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span>                  <span class="com"># Atompositionen in der Einheitszelle</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t66" href="#t66">66</a></span><span class="t">    <span class="nam">coordination_number</span><span class="op">:</span> <span class="nam">int</span>               <span class="com"># Koordinationszahl (Grad)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t67" href="#t67">67</a></span><span class="t">    <span class="nam">symmetry_group</span><span class="op">:</span> <span class="nam">str</span>                    <span class="com"># Wallpaper-Gruppe</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t68" href="#t68">68</a></span><span class="t">    <span class="nam">multiplicity</span><span class="op">:</span> <span class="nam">int</span>                      <span class="com"># Anzahl der Atome pro Einheitszelle</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t69" href="#t69">69</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t70" href="#t70">70</a></span><span class="t">    <span class="key">def</span> <span class="nam">__post_init__</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t71" href="#t71">71</a></span><span class="t">        <span class="str">"""Validiere die Datenstruktur."""</span>&nbsp;</span><span class="r"></span></p>
@@ -163,13 +163,13 @@
     <p class="run"><span class="n"><a id="t79" href="#t79">79</a></span><span class="t"><span class="key">class</span> <span class="nam">KUniformTessellation</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t80" href="#t80">80</a></span><span class="t">    <span class="str">"""Vollst&#228;ndige Beschreibung einer k-uniformen Tessellation."""</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t81" href="#t81">81</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t82" href="#t82">82</a></span><span class="t">    <span class="nam">name</span><span class="op">:</span> <span class="nam">str</span>                              <span class="com"># Name z.B. "3.12.12" oder "2-uniform-61a"</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t83" href="#t83">83</a></span><span class="t">    <span class="nam">k_uniform</span><span class="op">:</span> <span class="nam">int</span>                         <span class="com"># k-Uniformit&#228;tsgrad (1-8)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t84" href="#t84">84</a></span><span class="t">    <span class="nam">vertex_orbits</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">VertexOrbit</span><span class="op">]</span>      <span class="com"># Liste der Vertex-Orbits</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t85" href="#t85">85</a></span><span class="t">    <span class="nam">hopping_matrix</span><span class="op">:</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span>             <span class="com"># H&#252;pf-Parameter zwischen Orbits</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">    <span class="nam">reciprocal_vectors</span><span class="op">:</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span>         <span class="com"># Reziproke Gittervektoren</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t">    <span class="nam">wallpaper_group</span><span class="op">:</span> <span class="nam">str</span>                   <span class="com"># Kristallographische Symmetriegruppe</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t88" href="#t88">88</a></span><span class="t">    <span class="nam">total_vertices_per_cell</span><span class="op">:</span> <span class="nam">int</span>           <span class="com"># Gesamtzahl Atome in Einheitszelle</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t82" href="#t82">82</a></span><span class="t">    <span class="nam">name</span><span class="op">:</span> <span class="nam">str</span>                              <span class="com"># Name z.B. "3.12.12" oder "2-uniform-61a"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t83" href="#t83">83</a></span><span class="t">    <span class="nam">k_uniform</span><span class="op">:</span> <span class="nam">int</span>                         <span class="com"># k-Uniformit&#228;tsgrad (1-8)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t84" href="#t84">84</a></span><span class="t">    <span class="nam">vertex_orbits</span><span class="op">:</span> <span class="nam">List</span><span class="op">[</span><span class="nam">VertexOrbit</span><span class="op">]</span>      <span class="com"># Liste der Vertex-Orbits</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t85" href="#t85">85</a></span><span class="t">    <span class="nam">hopping_matrix</span><span class="op">:</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span>             <span class="com"># H&#252;pf-Parameter zwischen Orbits</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">    <span class="nam">reciprocal_vectors</span><span class="op">:</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span>         <span class="com"># Reziproke Gittervektoren</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t">    <span class="nam">wallpaper_group</span><span class="op">:</span> <span class="nam">str</span>                   <span class="com"># Kristallographische Symmetriegruppe</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t88" href="#t88">88</a></span><span class="t">    <span class="nam">total_vertices_per_cell</span><span class="op">:</span> <span class="nam">int</span>           <span class="com"># Gesamtzahl Atome in Einheitszelle</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t89" href="#t89">89</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t90" href="#t90">90</a></span><span class="t">    <span class="key">def</span> <span class="nam">__post_init__</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t91" href="#t91">91</a></span><span class="t">        <span class="str">"""Validiere Tessellation-Struktur."""</span>&nbsp;</span><span class="r"></span></p>
@@ -868,7 +868,7 @@
             <a class="nav" href="index.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.15.3">coverage.py v7.15.3</a>,
-            created at 2026-08-05 09:05 +0200
+            created at 2026-08-05 13:46 +0200
         </p>
     </div>
 </footer>

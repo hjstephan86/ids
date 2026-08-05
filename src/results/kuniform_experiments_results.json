@@ -1,14 +1,14 @@
 {
   "metadata": {
     "title": "K-uniforme Tessellationen Experimentalsuite",
-    "timestamp": "2026-08-03 17:05:19",
+    "timestamp": "2026-08-05 13:54:53",
     "author": "Stephan Epp",
     "date": "31. Juli 2026"
   },
   "experiments": {
     "classification": {
       "experiment": "classification_overview",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "Klassifikation aller bekannten k-uniformen Tessellationen",
       "statistics": {
         "total_tessellations": 11,
@@ -52,7 +52,7 @@
     },
     "convergence": {
       "experiment": "convergence_analysis_kuniform",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "IDS Konvergenz mit k-Gitter f\u00fcr verschiedene k-Grade",
       "N_k_values": [
         5,
@@ -67,7 +67,7 @@
     },
     "spectral": {
       "experiment": "spectral_analysis",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "Spektralanalyse k-uniformer Tessellationen",
       "analysis": {
         "bandgap_distribution": {
@@ -90,7 +90,7 @@
     },
     "comparison": {
       "experiment": "k_degree_comparison",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "Vergleich IDS \u00fcber verschiedene k-Uniformit\u00e4tsgrade",
       "comparisons": {
         "structure_complexity": {
@@ -114,7 +114,7 @@
     },
     "performance": {
       "experiment": "performance_analysis",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "Laufzeitanalyse f\u00fcr k-uniforme Tessellationen",
       "complexity_model": {
         "phase1_brillouin": {
@@ -167,7 +167,7 @@
     },
     "symmetry": {
       "experiment": "symmetry_analysis",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "Analyse der Symmetrie-Effekte auf IDS und Spektrum",
       "wallpaper_groups": {
         "p1": {
@@ -252,7 +252,7 @@
     },
     "validation": {
       "experiment": "comparison_with_original",
-      "timestamp": "2026-08-03 17:05:19",
+      "timestamp": "2026-08-05 13:54:53",
       "description": "Validierung neuer k-uniformer Code gegen Original (Archimedean)",
       "validation_points": {
         "algorithm_structure": {

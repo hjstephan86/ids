@@ -14,8 +14,8 @@ Diese Test-Suite überprüft:
 7. Validierung gegen theoretische Vorhersagen
 
 Ausführen mit:
-    pytest test_kuniform_ids.py -v --cov=ids_kuniform_calculator
-    pytest test_kuniform_ids.py -v --cov-report=html
+    pytest test_ids_kuniform_calculator.py -v --cov=ids_kuniform_calculator
+    pytest test_ids_kuniform_calculator.py -v --cov-report=html
 
 Autor: Stephan Epp
 Datum: 31. Juli 2026
@@ -30,8 +30,8 @@ import time
 from typing import Dict, Tuple
 
 # Importiere zu testende Module
-sys.path.insert(0, str(Path(__file__).parent))
-from ids_kuniform_calculator import (
+sys.path.insert(0, str(Path(__file__).parent / ".."))
+from src.ids_kuniform_calculator import (
     KUniformTessellation,
     KUniformLattice,
     VertexOrbit,
@@ -836,7 +836,7 @@ class TestPerformance:
 # ============================================================================
 
 if __name__ == "__main__":
-    # Starte mit: pytest test_kuniform_ids.py -v --cov
+    # Starte mit: pytest test_ids_kuniform_calculator.py -v --cov
     pytest.main([
         __file__,
         "-v",

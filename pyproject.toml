@@ -93,7 +93,7 @@ branch = true
 source = ["src"]
 omit = [
     "src/experiments.py",
-    "src/experiments_kuni.py",
+    "src/experiments_kuniform.py",
     "*/site-packages/*",
     "*/tests/*",
     "*/test_*.py",

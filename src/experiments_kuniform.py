@@ -561,7 +561,7 @@ if __name__ == "__main__":
     
     # Exportiere Ergebnisse
     print("\n[EXPORT]")
-    export_experiment_results(results, output_dir='.')
+    export_experiment_results(results, output_dir='src/results/')
     
     print("\n" + "="*80)
     print("✓ EXPERIMENTALSUITE ERFOLGREICH ABGESCHLOSSEN")

@@ -23,10 +23,10 @@ from typing import Dict, Tuple
 import warnings
 import json
 
-# Garantiert, dass das Projekt-Hauptverzeichnis im Suchpfad liegt
-root_dir = Path(__file__).resolve().parent.parent
-if str(root_dir) not in sys.path:
-    sys.path.insert(0, str(root_dir))
+# Garantiert, dass das src-Verzeichnis im Suchpfad liegt
+src_dir = Path(__file__).resolve().parent.parent / "src"
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
 
 from ids_calculator import (
     ArchimideanLattice,
